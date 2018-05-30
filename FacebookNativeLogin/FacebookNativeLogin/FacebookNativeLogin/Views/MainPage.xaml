@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FacebookNativeLogin.Views.MainPage"
+			 xmlns:local="clr-namespace:FacebookNativeLogin.Views.Converters"
+             Title="{Binding Title}"
+             BackgroundColor="#ffffff">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:InvertBooleanConverter x:Key="InvertBooleanConverter"/>
+            <Color x:Key="primary">#000000</Color>
+            <!-- Antiga #fddcdc-->
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<!--
+	<StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+-->
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout Padding="40" Spacing="10">
+                <!--   <Image Source="LogoPageLogin.png"></Image>
+
+                       <local:ImageEntry TextColor="White" 
+                        PlaceholderColor="{StaticResource primary}" 
+                        Image="user" 
+                        Placeholder="Email" 
+                        HorizontalOptions="FillAndExpand"/>
+                <local:ImageEntry TextColor="White" 
+                    PlaceholderColor="{StaticResource primary}"  
+                    Image="password" 
+                    Placeholder="Password" 
+                    HorizontalOptions="FillAndExpand"/>-->
+
+                    <Entry
+                    TextColor="Black" 
+                        PlaceholderColor="{StaticResource primary}" 
+                         
+                        Placeholder="Email" 
+                        HorizontalOptions="FillAndExpand">
+                    </Entry>
+
+                    <Entry
+                    TextColor="Black" 
+                    PlaceholderColor="{StaticResource primary}"  
+                     
+                    Placeholder="Password" 
+                    HorizontalOptions="FillAndExpand">
+
+                    </Entry>
+
+                    <Button HeightRequest="50" 
+                         TextColor="White" 
+                         Text="Login"  
+                         BackgroundColor="#000000"
+                         HorizontalOptions="FillAndExpand"
+                            Command="{Binding NavigateToView1PageCommand}"/>
+
+                    <Label  Text="Forgot password" 
+                        HorizontalOptions="Center" 
+                        TextColor="{StaticResource primary}"/>
+
+                    <Button
+                        TextColor="White"
+                            Text="Logout"
+                            BackgroundColor="#4267b2"
+                            VerticalOptions="End"
+                            Command="{Binding FacebookLogoutCommand}" 
+				            IsVisible="{Binding IsLogedIn}"/>
+                            
+                    <Button
+                        TextColor="White"
+                        Text="Fazer Login com Facebook"
+                        BackgroundColor="#4267b2"
+                        VerticalOptions="End"
+                        Command="{Binding FacebookLoginCommand}"
+				        IsVisible="{Binding IsLogedIn, Converter={StaticResource InvertBooleanConverter}}"/>
+
+
+                    <Label Margin="0,0,0,20" Text="I don't have an account"
+                       VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Center" 
+                        TextColor="{StaticResource primary}">
+                        <Label.GestureRecognizers>
+                            
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+                <Image Source="{Binding FacebookUser.Picture}" 
+			   IsVisible="{Binding IsLogedIn}"/>
+
+                <Label Text="{Binding FacebookUser.FirstName}" 
+			   IsVisible="{Binding IsLogedIn}"/>
+
+                <Label Text="{Binding FacebookUser.Email}" 
+			   IsVisible="{Binding IsLogedIn}"/>
+            </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+
+</ContentPage>
